@@ -1,7 +1,9 @@
 #include "client.h"
 
 //NOTAS:
-//Si usamos un readline, recordar usar un free (1)
+//- Si usamos un readline, recordar usar un free (1)
+//- El objetivo del trabajo es ingresar lineas e ir loggeandolas. Cuando la linea que recibe es '/0' (es decir)
+//no insertamos nada, se debe acabar el programa. Por lo tanto la condicion de corte es '/0'
 
 int main(void)
 {
@@ -29,7 +31,6 @@ int main(void)
 	log_info(logger, valor);
 
 	leer_consola(logger);
-
 
 	/*---------------------------------------------------PARTE 3-------------------------------------------------------------*/
 
@@ -69,8 +70,7 @@ void leer_consola(t_log* logger)
 	leido = readline(">");
 
 	// Acá la idea es que imprimas por el log lo que recibis de la consola.
-
-
+	log_info(logger, leido);
 }
 
 void paquete(int conexion)
@@ -88,4 +88,5 @@ void terminar_programa(int conexion, t_log* logger, t_config* config)
 	//Y por ultimo, para cerrar, hay que liberar lo que utilizamos (conexion, log y config) con las funciones de las commons y del TP mencionadas en el enunciado
 	log_destroy(logger);
 	config_destroy(config);
+	liberar_conexion(conexion);
 }
