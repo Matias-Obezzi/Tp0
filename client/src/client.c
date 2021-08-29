@@ -51,36 +51,27 @@ int main(void)
 t_log* iniciar_logger(void)
 {
 	t_log* nuevo_logger =  log_create("tp0.log", "Cliente", 1, LOG_LEVEL_DEBUG);
-
 	return nuevo_logger;
 }
 
 t_config* iniciar_config(void)
 {
 	t_config* nuevo_config = config_create("tp0.config");
-
 	return nuevo_config;
 }
 
 void leer_consola(t_log* logger)
 {
 	char* leido;
-
-	//El primero te lo dejo de yapa
 	leido = readline(">");
-
-	// Acá la idea es que imprimas por el log lo que recibis de la consola.
 	log_info(logger, leido);
+	free(leido);
 }
 
 void paquete(int conexion)
 {
-	//Ahora toca lo divertido!
-
 	char* leido;
 	t_paquete* paquete;
-
-
 }
 
 void terminar_programa(int conexion, t_log* logger, t_config* config)
