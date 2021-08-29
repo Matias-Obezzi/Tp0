@@ -21,7 +21,9 @@ int main(void)
 	puerto = config_get_string_value(config, "PUERTO");
 	valor = config_get_string_value(config, "VALOR");
 	
-	log_info(logger, config);
+	log_info(logger, ip);
+	log_info(logger, puerto);
+	log_info(logger, valor);
 
 	leer_consola(logger);
 
@@ -34,7 +36,6 @@ int main(void)
 	conexion = crear_conexion(ip, puerto);
 
 	//enviar CLAVE al servirdor
-
 	paquete(conexion);
 
 	terminar_programa(conexion, logger, config);
