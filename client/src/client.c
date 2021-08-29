@@ -73,8 +73,8 @@ void paquete(int conexion)
 	char* leido = readline(">");
 	while (!strcmp(leido, "")) {
 		t_paquete* paquete = crear_paquete();
-		agregar_a_paquete(paquete, leido);
-		enviar_paquete(conexion, paquete);
+		agregar_a_paquete(paquete, leido, strlen(leido + 1));
+		enviar_paquete(paquete, conexion);
 		eliminar_paquete(paquete);
 	}
 	free(leido);
