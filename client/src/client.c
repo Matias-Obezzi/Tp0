@@ -26,11 +26,11 @@ int main(void)
 	puerto = config_get_string_value(config, "PUERTO");
 	valor = config_get_string_value(config, "VALOR");
 	
-	log_info(logger, ip);
-	log_info(logger, puerto);
-	log_info(logger, valor);
+	// log_info(logger, ip);
+	// log_info(logger, puerto);
+	// log_info(logger, valor);
 
-	leer_consola(logger);
+	// leer_consola(logger);
 
 	/*---------------------------------------------------PARTE 3-------------------------------------------------------------*/
 
@@ -70,8 +70,14 @@ void leer_consola(t_log* logger)
 
 void paquete(int conexion)
 {
-	char* leido;
-	t_paquete* paquete;
+	char* leido = readline(">");
+	while (!strcmp(leido, "")) {
+		t_paquete* paquete = crear_paquete();
+		agregar_a_paquete(paquete, leido);
+		enviar_paquete(conexion, paquete);
+		eliminar_paquete(paquete);
+	}
+	free(leido);
 }
 
 void terminar_programa(int conexion, t_log* logger, t_config* config)
