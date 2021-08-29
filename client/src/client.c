@@ -17,10 +17,11 @@ int main(void)
 	config = iniciar_config();
 	log_info(logger, "Configuracion iniciada");
 
-	// Usando el config creado previamente
-	// Lee las variables de IP, Puerto y Valor
-
-	//Loggear valor de config
+	ip = config_get_string_value(config, "IP");
+	puerto = config_get_string_value(config, "PUERTO");
+	valor = config_get_string_value(config, "VALOR");
+	
+	log_info(logger, config);
 
 	leer_consola(logger);
 
