@@ -1,6 +1,10 @@
 #include "server.h"
 
 int main(void) {
+	void print (char* value) {
+		log_info(logger, value);
+	}
+
 	logger = log_create("log.log", "Servidor", 1, LOG_LEVEL_DEBUG);
 
 	int server_fd = iniciar_servidor();
@@ -17,7 +21,7 @@ int main(void) {
 		case PAQUETE:
 			lista = recibir_paquete(cliente_fd);
 			log_info(logger, "Me llegaron los siguientes valores:\n");
-			list_iterate(lista, (void*) iterator);
+			list_iterate(lista, (void*) print);
 			break;
 		case -1:
 			log_error(logger, "el cliente se desconecto. Terminando servidor");
@@ -29,8 +33,4 @@ int main(void) {
 		}
 	}
 	return EXIT_SUCCESS;
-}
-
-void iterator(t_log* logger, char* value) {
-	log_info(logger,"%s\n", value);
 }

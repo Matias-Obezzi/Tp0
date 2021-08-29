@@ -71,9 +71,9 @@ void leer_consola(t_log* logger)
 void paquete(int conexion)
 {
 	char* leido = readline(">");
-	while (!strcmp(leido, "")) {
+	while (strcmp(leido, "") == 0) {
 		t_paquete* paquete = crear_paquete();
-		agregar_a_paquete(paquete, leido, strlen(leido + 1));
+		agregar_a_paquete(paquete, leido, strlen(leido) + 1);
 		enviar_paquete(paquete, conexion);
 		eliminar_paquete(paquete);
 	}
